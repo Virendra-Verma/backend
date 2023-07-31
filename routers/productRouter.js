@@ -1,20 +1,56 @@
 const express = require('express');
 const router = express.Router();
+const Model = require('../models/productModel');
 
-router.get('/add',(req,res)=>{
-    res.send('response form product add');
+router.post('/add',(req,res)=>{
+    //res.send('response form product add');
+    new Model(req.body).save()
+    .then((result) => {
+        res.json(result);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 //getall
 
 router.get('/getall',(req,res)=>{
-    res.send('response getall');
-});
+    Model.find({})
+    .then((result) => {
+        res.json(result);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+ });
+ 
 
 //getbyid
 
-router.get('/getbyid',(req,res)=>{
-    res.send('response form getbyid');
+//colon denoted a url parameter
+router.get('/getbyid/:id',(req,res)=>{
+    console.log(req.params.id);
+    Model.findById(req.params.id)
+    .then((result) => {
+    res.json(result);
+})
+.catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+});
+});
+router.get('/getbyemail/:email',(req,res)=>{
+    model.find({email:req.params.email})
+    .then((result) => {
+        res.json(result);
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
 module.exports=router 
