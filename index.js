@@ -12,9 +12,10 @@ const cors = require('cors');
 const UserRouter = require('./routers/userRouter');
 const ProductRouter = require('./routers/productRouter');
 const ContactRouter = require('./routers/contactRouter');
+const utilRouter = require('./routers/util');
 
 app.use(cors({
-    origin : ['http://localhost:3000']
+    origin : ['http://localhost']
 }));
 app.use(express.json());
 
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use('/user', UserRouter);
 app.use('/product', ProductRouter);
 app.use('/contact', ContactRouter);
+app.use('/util', utilRouter);
 
 
 
