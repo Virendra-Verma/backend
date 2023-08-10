@@ -6,6 +6,7 @@ const app = express();
 const port = 5000;
 
 
+
 const cors = require('cors');
 
 // import routers
@@ -15,7 +16,7 @@ const ContactRouter = require('./routers/contactRouter');
 const utilRouter = require('./routers/util');
 
 app.use(cors({
-    origin : ['http://localhost']
+    origin : ['http://localhost:3000']
 }));
 app.use(express.json());
 
